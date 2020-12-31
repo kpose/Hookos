@@ -9,25 +9,21 @@ import {
   Alert,
 } from 'react-native';
 import {Button, Input, Loader} from './src/components';
+import {Login, Signup, Home} from './src/screens';
 
 const App = () => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <Text> home screen </Text>
-        <Button title="here" onPress={() => Alert.alert('Button pressed')} />
-        <Input
-          placeholder="Enter password"
-          secureTextEntry={true}
-          placeholderTextColor="blue"
-        />
-        <Loader />
-      </SafeAreaView>
-    </>
+    <View style={styles.container}>
+      <Signup />
+    </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    flex: 1,
+  },
+});
 
 export default App;

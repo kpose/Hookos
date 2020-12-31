@@ -8,7 +8,7 @@ type InputProps = {
   inputStyle?: ViewStyle | ViewStyle[];
   placeholderTextColor?: string;
   secureTextEntry?: boolean;
-  onChangeText?: () => void;
+  onChangeText?: () => void | any;
   value?: any;
   onSubmitEditing?: () => void;
   onBlur?: () => void;
