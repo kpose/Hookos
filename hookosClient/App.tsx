@@ -1,4 +1,6 @@
+import 'react-native-gesture-handler';
 import React from 'react';
+import {Provider as PaperProvider} from 'react-native-paper';
 import {
   SafeAreaView,
   StyleSheet,
@@ -13,9 +15,11 @@ import {Login, Signup, Home} from './src/screens';
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Signup />
-    </View>
+    <PaperProvider>
+      <View style={styles.container}>
+        <Signup />
+      </View>
+    </PaperProvider>
   );
 };
 
