@@ -5,17 +5,17 @@ import styles from './styles';
 
 const animation = require('../../lottie/communicating.json');
 
-const Home = ({navigation}: {navigation: any}) => {
+const Settings = ({navigation}: {navigation: any}) => {
   return (
     <View style={styles.containerCentered}>
-      <Text>this is the home component</Text>
+      <Text>this is the Settings component</Text>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('HookoDetails')}>
+        onPress={() => navigation.navigate('Notifications')}>
         <Text>Press Here</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default Home;
+export default Settings;

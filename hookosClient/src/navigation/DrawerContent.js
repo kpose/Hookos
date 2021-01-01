@@ -13,7 +13,7 @@ import {
   Switch,
 } from 'react-native-paper';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export function DrawerContent(props) {
   return (
@@ -29,7 +29,6 @@ export function DrawerContent(props) {
           />
           <Title style={styles.title}>Kpose Richard</Title>
           <Caption style={styles.caption}>@kpoosee</Caption>
-          {/* <Icon name="rocket" size={30} color="#900" /> */}
           <View style={styles.row}>
             <View style={styles.section}>
               <Paragraph style={[styles.paragraph, styles.caption]}>
@@ -45,7 +44,37 @@ export function DrawerContent(props) {
             </View>
           </View>
         </View>
-
+        <Drawer.Section style={styles.drawerSection}>
+          <DrawerItem
+            icon={({color, size}) => (
+              <MaterialCommunityIcons
+                name="account-outline"
+                color={color}
+                size={size}
+              />
+            )}
+            label="Profile"
+            onPress={() => {}}
+          />
+          <DrawerItem
+            icon={({color, size}) => (
+              <MaterialCommunityIcons name="tune" color={color} size={size} />
+            )}
+            label="Preferences"
+            onPress={() => {}}
+          />
+          <DrawerItem
+            icon={({color, size}) => (
+              <MaterialCommunityIcons
+                name="bookmark-outline"
+                color={color}
+                size={size}
+              />
+            )}
+            label="Bookmarks"
+            onPress={() => {}}
+          />
+        </Drawer.Section>
         <Drawer.Section title="Preferences">
           <TouchableRipple onPress={() => {}}>
             <View style={styles.preference}>
