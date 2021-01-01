@@ -1,5 +1,6 @@
 import React from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {useTheme, Portal, FAB} from 'react-native-paper';
 
 import {Notifications, Settings} from '../screens';
 import {FeedStack} from './FeedStack';

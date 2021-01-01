@@ -11,8 +11,7 @@ import {
   StatusBar,
   Alert,
 } from 'react-native';
-import {Button, Input, Loader} from './src/components';
-import {Login, Signup, Home} from './src/screens';
+
 import DrawerNavigator from './src/navigation/DrawerNavigator';
 
 const App = () => {

@@ -1,19 +1,30 @@
-import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import LottieView from 'lottie-react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Text, TouchableOpacity, FlatList} from 'react-native';
+import {Loader} from '../../components';
 import styles from './styles';
 
-const animation = require('../../lottie/communicating.json');
-
 const Home = ({navigation}: {navigation: any}) => {
+  const [isLoading, setLoading] = useState(true);
+  const [hookos, setHookos] = useState([]);
+
+  useEffect(() => {
+    fetch('https://us-central1-hooko-36c30.cloudfunctions.net/api/posts')
+      .then((response) => response.json())
+      .then((json) => setHookos(json))
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
+  }, []);
   return (
     <View style={styles.containerCentered}>
-      <Text>this is the home component</Text>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('HookoDetails')}>
-        <Text>Press Here</Text>
-      </TouchableOpacity>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <FlatList
+          data={hookos}
+          keyExtractor={({id}, index) => id}
+          renderItem={({item}) => <Text>{item.body}</Text>}
+        />
+      )}
     </View>
   );
 };
