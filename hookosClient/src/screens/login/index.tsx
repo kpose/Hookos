@@ -40,7 +40,7 @@ const Login = (props: LoginProps) => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={keyboardVerticalOffset}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <SafeAreaView style={{backgroundColor: color.BLACK, flex: 1}}>
+        <SafeAreaView style={{backgroundColor: color.WHITE, flex: 1}}>
           <View style={styles.containerCentered}>
             <LottieView
               source={animation}

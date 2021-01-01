@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import {Provider as PaperProvider} from 'react-native-paper';
+import {NavigationContainer} from '@react-navigation/native';
 import {
   SafeAreaView,
   StyleSheet,
@@ -12,13 +13,16 @@ import {
 } from 'react-native';
 import {Button, Input, Loader} from './src/components';
 import {Login, Signup, Home} from './src/screens';
+import DrawerNavigator from './src/navigation/DrawerNavigator';
 
 const App = () => {
   return (
     <PaperProvider>
-      <View style={styles.container}>
-        <Signup />
-      </View>
+      <NavigationContainer>
+        <View style={styles.container}>
+          <DrawerNavigator />
+        </View>
+      </NavigationContainer>
     </PaperProvider>
   );
 };
