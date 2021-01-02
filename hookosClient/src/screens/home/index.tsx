@@ -1,11 +1,27 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  FlatList,
+  ListRenderItem,
+} from 'react-native';
 import {Loader} from '../../components';
 import styles from './styles';
 
-const Home = ({navigation}: {navigation: any}) => {
+type HookosProps = {
+  item: {
+    id: string;
+    body: string;
+    userHandle: string;
+  };
+};
+
+const Home = (props: HookosProps) => {
   const [isLoading, setLoading] = useState(true);
-  const [hookos, setHookos] = useState([]);
+  const [hookos, setHookos] = useState<[]>();
+
+  const renderHookos = ({item}: HookosProps) => <Text>{item.body}</Text>;
 
   useEffect(() => {
     fetch('https://us-central1-hooko-36c30.cloudfunctions.net/api/posts')
@@ -22,7 +38,7 @@ const Home = ({navigation}: {navigation: any}) => {
         <FlatList
           data={hookos}
           keyExtractor={({id}, index) => id}
-          renderItem={({item}) => <Text>{item.body}</Text>}
+          renderItem={renderHookos}
         />
       )}
     </View>
