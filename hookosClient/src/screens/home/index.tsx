@@ -1,47 +1,43 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  FlatList,
-  ListRenderItem,
-} from 'react-native';
-import {Loader} from '../../components';
+import {View, Text, SafeAreaView} from 'react-native';
+import axios from 'axios';
+import {Loader, HookoCard} from '../../components';
 import styles from './styles';
 
-type HookosProps = {
-  item: {
-    id: string;
-    body: string;
-    userHandle: string;
-  };
-};
+export interface HookoProps {
+  body: string;
+  commentCount: number;
+  likeCount: number;
+  createdAt: string;
+  userHandle: string;
+  userImage: string;
+  postId: string;
+}
 
-const Home = (props: HookosProps) => {
+const Home: React.FC = () => {
   const [isLoading, setLoading] = useState(true);
-  const [hookos, setHookos] = useState<[]>();
+  const [hookos, setHookos] = useState<HookoProps[]>([]);
 
-  const renderHookos = ({item}: HookosProps) => <Text>{item.body}</Text>;
+  const hookosMarkup = hookos.map((data: HookoProps) => (
+    <HookoCard key={data.postId} hooko={data} />
+  ));
 
   useEffect(() => {
-    fetch('https://us-central1-hooko-36c30.cloudfunctions.net/api/posts')
-      .then((response) => response.json())
-      .then((json) => setHookos(json))
-      .catch((err) => console.error(err))
-      .finally(() => setLoading(false));
+    axios
+      .get<HookoProps[]>(
+        'https://us-central1-hooko-36c30.cloudfunctions.net/api/posts',
+      )
+      .then(({data}) => {
+        setHookos(data);
+        setLoading(false);
+      });
+    console.log(hookos);
   }, []);
+
   return (
-    <View style={styles.containerCentered}>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <FlatList
-          data={hookos}
-          keyExtractor={({id}, index) => id}
-          renderItem={renderHookos}
-        />
-      )}
-    </View>
+    <SafeAreaView style={styles.containerCentered}>
+      {isLoading ? <Loader /> : hookosMarkup}
+    </SafeAreaView>
   );
 };
 
