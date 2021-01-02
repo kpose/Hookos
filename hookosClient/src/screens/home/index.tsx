@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, SafeAreaView} from 'react-native';
+import {View, Text, SafeAreaView, ScrollView} from 'react-native';
 import axios from 'axios';
 import {Loader, HookoCard} from '../../components';
 import styles from './styles';
@@ -36,7 +36,7 @@ const Home: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.containerCentered}>
-      {isLoading ? <Loader /> : hookosMarkup}
+      <ScrollView>{isLoading ? <Loader /> : hookosMarkup}</ScrollView>
     </SafeAreaView>
   );
 };
