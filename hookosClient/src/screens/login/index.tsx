@@ -11,16 +11,23 @@ import {
 } from 'react-native';
 import {color} from '../../utils';
 import {keyboardVerticalOffset} from '../../utils/constants';
-import {Input, Button} from '../../components';
+import {Input, Button, Loader} from '../../components';
 import LottieView from 'lottie-react-native';
+import axios from 'axios';
+//import {useNavigation} from '@react-navigation/native';
 
-type LoginProps = {message?: string};
+type LoginProps = {
+  message?: string;
+};
 
 const animation = require('../../lottie/socialnetwork.json');
 
 const Login = (props: LoginProps) => {
+  //const navigation = useNavigation();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [errors, setErrors] = useState({});
   const [showAnmie, toggleAnmie] = useState(true);
 
   const handleFocus = () => {
@@ -34,6 +41,29 @@ const Login = (props: LoginProps) => {
       toggleAnmie(true);
     }, 200);
   };
+
+  const handleLogin = () => {
+    setLoading(true);
+    const userData = {
+      email: email,
+      password: password,
+    };
+    axios
+      .post(
+        'https://us-central1-hooko-36c30.cloudfunctions.net/api/login',
+        userData,
+      )
+      .then((res) => {
+        console.log(res.data);
+        setLoading(false);
+        //navigation.navigate('Home');
+      })
+      .catch((err) => {
+        setErrors(err.response.data);
+        setLoading(false);
+      });
+  };
+
   return (
     <KeyboardAvoidingView
       style={{backgroundColor: color.BLACK, flex: 1}}
@@ -55,21 +85,21 @@ const Login = (props: LoginProps) => {
             <Input
               placeholder="Enter email"
               value={email}
-              /* onChangeText={(text) => handleOnChange('email', text)} */
+              onChangeText={(text: string) => setEmail(text)}
               onFocus={() => handleFocus()}
               onBlur={() => handleBlur()}
             />
-
             <Input
               placeholder="Enter password"
               secureTextEntry={true}
               value={password}
-              /* onChangeText={(text) => handleOnChange('password', text)} */
+              onChangeText={(text: string) => setPassword(text)}
               onFocus={() => handleFocus()}
               onBlur={() => handleBlur()}
             />
 
-            <Button title="Login" onPress={() => console.log('pressed')} />
+            <Button title="Login" onPress={() => handleLogin()} />
+            <Text>Don't have an account?</Text>
             <Text
               style={{
                 fontSize: 28,

@@ -1,11 +1,11 @@
 import React from 'react';
-import {Image} from 'react-native';
+import {Image, TouchableOpacity} from 'react-native';
 import {Avatar, Button, Card, Title, Paragraph} from 'react-native-paper';
-import {deviceWidth} from '../../utils/styleHelper/appStyle';
+import moment from 'moment';
 
 //import {uuid} from '../../utility/constants';
 import styles from './styles';
-import {color} from '../../utils';
+
 import {HookoProps} from '../../screens/home';
 
 const HookoCard: React.FC<{hooko: HookoProps}> = (props) => {
@@ -28,7 +28,13 @@ const HookoCard: React.FC<{hooko: HookoProps}> = (props) => {
   );
   return (
     <Card style={styles.hookoBody}>
-      <Card.Title title={userHandle} subtitle={createdAt} left={LeftContent} />
+      <TouchableOpacity>
+        <Card.Title
+          title={userHandle}
+          subtitle={moment(createdAt).fromNow()}
+          left={LeftContent}
+        />
+      </TouchableOpacity>
       <Card.Content>
         <Paragraph>{body}</Paragraph>
       </Card.Content>
@@ -37,8 +43,9 @@ const HookoCard: React.FC<{hooko: HookoProps}> = (props) => {
         source={{uri: 'https://picsum.photos/700'}}
       />
       <Card.Actions style={styles.footerContent}>
-        <Button>Cancel</Button>
-        <Button>Ok</Button>
+        <Button>Like</Button>
+        <Button>Comment</Button>
+        <Button>Delete</Button>
       </Card.Actions>
     </Card>
   );

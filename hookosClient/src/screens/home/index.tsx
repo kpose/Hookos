@@ -36,7 +36,9 @@ const Home: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.containerCentered}>
-      <ScrollView>{isLoading ? <Loader /> : hookosMarkup}</ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {isLoading ? <Loader /> : hookosMarkup}
+      </ScrollView>
     </SafeAreaView>
   );
 };

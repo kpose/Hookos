@@ -12,6 +12,8 @@ import {
   Alert,
 } from 'react-native';
 
+import {Login} from './src/screens';
+
 import DrawerNavigator from './src/navigation/DrawerNavigator';
 
 const App = () => {
@@ -20,6 +22,7 @@ const App = () => {
       <NavigationContainer>
         <View style={styles.container}>
           <DrawerNavigator />
+          {/* <Login /> */}
         </View>
       </NavigationContainer>
     </PaperProvider>
