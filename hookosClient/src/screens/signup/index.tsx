@@ -8,18 +8,28 @@ import {
   Platform,
   Keyboard,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import {color} from '../../utils';
 import {keyboardVerticalOffset} from '../../utils/constants';
 import {Input, Button} from '../../components';
 import styles from './styles';
 import LottieView from 'lottie-react-native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParamList} from '../../navigation/RootNavigator';
 
-type SignupProps = {message?: string};
+type LoginScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'Signup'
+>;
+
+type Props = {
+  navigation: LoginScreenNavigationProp;
+};
 
 const animation = require('../../lottie/socialnetwork.json');
 
-const Signup = (props: SignupProps) => {
+const Signup = ({navigation}: Props) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [showAnmie, toggleAnmie] = useState(true);
@@ -69,15 +79,27 @@ const Signup = (props: SignupProps) => {
               onBlur={() => handleBlur()}
             />
 
-            <Button title="Login" onPress={() => console.log('pressed')} />
+            <Button
+              title="Sign up"
+              onPress={() => navigation.navigate('Home')}
+            />
             <Text
               style={{
-                fontSize: 28,
+                fontSize: 15,
                 fontWeight: 'bold',
-                color: color.LIGHT_GREEN,
               }}>
-              Sign up
+              Already have an account?
             </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+              <Text
+                style={{
+                  fontSize: 28,
+                  fontWeight: 'bold',
+                  color: color.LIGHT_GREEN,
+                }}>
+                Login
+              </Text>
+            </TouchableOpacity>
           </View>
         </SafeAreaView>
       </TouchableWithoutFeedback>

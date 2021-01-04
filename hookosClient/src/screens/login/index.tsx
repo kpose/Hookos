@@ -8,22 +8,28 @@ import {
   Platform,
   Keyboard,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import {color} from '../../utils';
 import {keyboardVerticalOffset} from '../../utils/constants';
 import {Input, Button, Loader} from '../../components';
 import LottieView from 'lottie-react-native';
 import axios from 'axios';
-//import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParamList} from '../../navigation/RootNavigator';
 
-type LoginProps = {
-  message?: string;
+type LoginScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'Login'
+>;
+
+type Props = {
+  navigation: LoginScreenNavigationProp;
 };
 
 const animation = require('../../lottie/socialnetwork.json');
 
-const Login = (props: LoginProps) => {
-  //const navigation = useNavigation();
+const Login = ({navigation}: Props) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -56,7 +62,7 @@ const Login = (props: LoginProps) => {
       .then((res) => {
         console.log(res.data);
         setLoading(false);
-        //navigation.navigate('Home');
+        navigation.navigate('Home');
       })
       .catch((err) => {
         setErrors(err.response.data);
@@ -98,16 +104,27 @@ const Login = (props: LoginProps) => {
               onBlur={() => handleBlur()}
             />
 
-            <Button title="Login" onPress={() => handleLogin()} />
-            <Text>Don't have an account?</Text>
+            <Button
+              title="Login"
+              onPress={() => navigation.navigate('Signup')}
+            />
             <Text
               style={{
-                fontSize: 28,
+                fontSize: 15,
                 fontWeight: 'bold',
-                color: color.LIGHT_GREEN,
               }}>
-              Sign up
+              Don't have an account?
             </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+              <Text
+                style={{
+                  fontSize: 28,
+                  fontWeight: 'bold',
+                  color: color.LIGHT_GREEN,
+                }}>
+                Sign up
+              </Text>
+            </TouchableOpacity>
           </View>
         </SafeAreaView>
       </TouchableWithoutFeedback>

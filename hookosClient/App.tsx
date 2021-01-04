@@ -13,16 +13,24 @@ import {
 } from 'react-native';
 
 import {Login} from './src/screens';
+import Proof from './src/screens/proof';
+import {FeedStack} from './src/navigation/FeedStack';
+import {BottomNavigator} from './src/navigation/BottomNavigator';
 
 import DrawerNavigator from './src/navigation/DrawerNavigator';
+import {RootNavigator} from './src/navigation/RootNavigator';
 
 const App = () => {
   return (
     <PaperProvider>
       <NavigationContainer>
         <View style={styles.container}>
-          <DrawerNavigator />
+          {/* <DrawerNavigator /> */}
           {/* <Login /> */}
+          {/* <Proof /> */}
+          {/* <FeedStack /> */}
+          {/* <BottomNavigator /> */}
+          <RootNavigator />
         </View>
       </NavigationContainer>
     </PaperProvider>
