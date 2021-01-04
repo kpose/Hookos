@@ -1,7 +1,7 @@
 import React from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
-import {Notifications, Settings} from '../screens';
+import {Notifications, Settings, Home} from '../screens';
 import {FeedStack} from './FeedStack';
 
 const Tab = createMaterialBottomTabNavigator();
@@ -9,7 +9,7 @@ const Tab = createMaterialBottomTabNavigator();
 export const BottomNavigator = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Feed"
+      //initialRouteName="Feed"
       shifting={true}
       sceneAnimationEnabled={false}>
       <Tab.Screen

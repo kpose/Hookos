@@ -78,13 +78,13 @@ const Login = ({navigation}: Props) => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <SafeAreaView style={{backgroundColor: color.WHITE, flex: 1}}>
           <View style={styles.containerCentered}>
-            <LottieView
+            {/* <LottieView
               source={animation}
               autoPlay={true}
               loop
               style={{width: 300, height: 250}}
               resizeMode="cover"
-            />
+            /> */}
           </View>
 
           <View style={styles.sectionCentered}>
@@ -106,7 +106,7 @@ const Login = ({navigation}: Props) => {
 
             <Button
               title="Login"
-              onPress={() => navigation.navigate('Signup')}
+              onPress={() => navigation.replace('Signup')}
             />
             <Text
               style={{

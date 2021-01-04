@@ -11,7 +11,7 @@ const Drawer = createDrawerNavigator();
 export const DrawerNavigator = () => {
   return (
     <Drawer.Navigator drawerContent={DrawerContent}>
-      <Drawer.Screen name="Home" component={BottomNavigator} />
+      <Drawer.Screen name="DrawerHome" component={BottomNavigator} />
     </Drawer.Navigator>
   );
 };

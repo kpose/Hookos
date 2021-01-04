@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 import {Login} from './src/screens';
-import Proof from './src/screens/proof';
+
 import {FeedStack} from './src/navigation/FeedStack';
 import {BottomNavigator} from './src/navigation/BottomNavigator';
 

@@ -7,6 +7,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {color} from '../utils';
 
 import {Home, FeedDetails} from '../screens';
+import {DrawerNavigator} from './BottomNavigator';
 
 const Stack = createStackNavigator();
 
@@ -22,7 +23,10 @@ const Header = ({scene, previous, navigation}) => {
   return (
     <Appbar.Header theme={{colors: {primary: color.WHITE}}}>
       {previous ? (
-        <Appbar.BackAction onPress={navigation.goBack} color={color.PURPLE} />
+        <Appbar.BackAction
+          onPress={navigation.openDrawer}
+          color={color.PURPLE}
+        />
       ) : (
         <TouchableOpacity
           onPress={() => {
@@ -61,11 +65,16 @@ export const FeedStack = () => {
         header: ({scene, previous, navigation}) => (
           <Header scene={scene} previous={previous} navigation={navigation} />
         ),
-      }}>
+      }}
+      /* screenOptions={{
+        headerShown: false,
+      }} */
+    >
       <Stack.Screen
         name="Hookos"
         component={Home}
-        options={{headerTitle: 'Hookos'}}
+        options={{title: 'Hookos'}}
+        //options={{headerShown: false}}
       />
       <Stack.Screen
         name="HookoDetails"

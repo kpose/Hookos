@@ -53,12 +53,12 @@ const Signup = ({navigation}: Props) => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <SafeAreaView style={{backgroundColor: color.WHITE, flex: 1}}>
           <View style={styles.containerCentered}>
-            <LottieView
+            {/* <LottieView
               source={animation}
               autoPlay
               style={{width: 300, height: 250}}
               resizeMode="cover"
-            />
+            /> */}
           </View>
 
           <View style={styles.sectionCentered}>
@@ -81,7 +81,7 @@ const Signup = ({navigation}: Props) => {
 
             <Button
               title="Sign up"
-              onPress={() => navigation.navigate('Home')}
+              onPress={() => navigation.replace('Home')}
             />
             <Text
               style={{
@@ -90,7 +90,7 @@ const Signup = ({navigation}: Props) => {
               }}>
               Already have an account?
             </Text>
-            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <TouchableOpacity onPress={() => navigation.replace('Login')}>
               <Text
                 style={{
                   fontSize: 28,

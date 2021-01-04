@@ -28,10 +28,6 @@ const HookoCard: React.FC<{hooko: HookoProps}> = (props) => {
           uri: userImage,
         }}
       />
-
-      <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
-        <Text>Press Here</Text>
-      </TouchableOpacity>
     </>
   );
   return (
